@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../redux/store'
 import axios from 'axios';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 const Step1 = () => {
     const dispatch = useDispatch();
-    const [selectedShelter, setSelectedShelter] = useState ('Vyberte si zo zoznamu') //Selected shelter  - ID or empty
+    const [selectedShelter, setSelectedShelter] = useState ('Vyberte si útulok zo zoznamu (nepovinné)') //Selected shelter  - ID or empty 
+    const [selected, setSelected] = useState (['selected', 'notSelected']) //Class selection of donation type
 
     //Axios API call
     useEffect (() => {
@@ -19,50 +22,54 @@ const Step1 = () => {
 
     //Donation type
     const DonationType = () => {
-        const [selected, setSelected] = useState (['selected', 'notSelected']) //Class selection
-
-        const handleDonationType = () => {
-            setSelected([selected[1], selected[0]]) //Swap class of selected option
-        }
         return (
             <>
+            <p id="donationChoiceText">Vyberte si možnosť, ako chcete pomôcť </p>
+            <div id="donationType">
                 <div id='wholeOrganization' className={selected[0]} onClick={() => {
-                            handleDonationType()
-                            setSelectedShelter('Vyberte si zo zoznamu') //List of shelters reset to default
+                            setSelected(['selected', 'notSelected'])
+                            setSelectedShelter('Vyberte si útulok zo zoznamu (nepovinné)') //List of shelters reset to default
                             dispatch({ type: 'SHELTERCHOICE', payload: ''}) //Selected shelter reset to empty
                         }}>
-                    <p>Chcem podporit celu organizaciu</p>
+                    <i className="fa fa-credit-card"></i>
+                    <p>Chcem finančne prispieť celej nadácii</p>
                 </div>
-                <div id='selectedShelter' className={selected[1]} onClick={handleDonationType}>
-                    <p>Chcem podporit konkretny utulok</p>
+                <div id='selectedShelter' className={selected[1]} onClick={() => setSelected(['notSelected', 'selected'])}>
+                    <i className="fa fa-paw"></i>
+                    <p>Chcem finančne prispieť konkrétnemu útulku</p>
                 </div>
+                <br></br>
+            </div>
             </>
         )
     }
 
     //Shelter Choice
     const ShelterChoice = () => {
-        const [selected, setSelected] = useState (['selectedShelter', 'notSelectedShelter']) //Class selection
 
         const handleShelterMenu = () => {
-            setSelected([selected[1], selected[0]]) //Swap selected class
+            setSelected(['notSelected', 'selected']) //Swap selected class of donation type
         }
 
             if (typeof store.getState().shelterLoadReducer == 'object'){ //Check if shelters are loaded, otherwise wait for LOADED state to rerender this component
                 return (
-                    <div onClick={handleShelterMenu}>
-                        <p>{selectedShelter}</p> {/*View selected shelter*/}
-                        <ul>
+                    <div id="shelterChoiceContainer">
+                        <p id="displaySelectedShelter">{selectedShelter}</p> {/*View selected shelter*/}
+                        <ul id="shelterList">
+                            <SimpleBar style={{ height: '10vw' }} >
                             {Object.values(store.getState().shelterLoadReducer)[0].map(shelter => //Mapping the list
                                 <li 
+                                    className="shelterListItem"
                                     key={shelter.id} 
                                     onClick={() => {
-                                        dispatch({ type: 'SHELTERCHOICE', payload: shelter.id }) //Shelter select
+                                        dispatch({ type: 'SHELTERCHOICE', payload: {id: shelter.id, name: shelter.name} }) //Shelter select
                                         setSelectedShelter(shelter.name) //Selected shelter
+                                        handleShelterMenu()
                                     }}
                                 >
-                                    {shelter.name}
+                                    <span>{shelter.name}</span>
                                 </li>)}
+                            </SimpleBar>
                         </ul>  
                     </div>
                 )
@@ -120,7 +127,7 @@ const Step1 = () => {
                     />
                     <button type="submit" style={{display: 'none'}} onClick={(event) => event.preventDefault()}/> {/*Hidden button*/}
                 </form>
-                
+                <p>Pokračovať</p>
             </>
         )
     }
@@ -130,6 +137,7 @@ const Step1 = () => {
             <DonationType />
             <ShelterChoice key={useSelector(state => state.isLoadedReducer)} />
             <DonationAmount />
+            <p className="nextButton">Pokracovat</p>
         </>      
     )
 }

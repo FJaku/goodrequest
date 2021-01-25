@@ -17,7 +17,7 @@ const Step3 = () => {
         email: store.getState().emailReducer,
         phone: store.getState().countryReducer.concat(store.getState().numberReducer) //Concat number with prefix
         value: store.getState().donationReducer,
-        shelterID: store.getState().shelterChoiceReducer
+        shelterID: store.getState().shelterChoiceReducer.id
     }
     axios
         .post('https://frontend-assignment-api.goodrequest.com/api/v1/shelters/contribute', finalFormSubmit)

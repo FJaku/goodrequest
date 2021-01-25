@@ -5,7 +5,7 @@ import baron from './img/baron1.jpg'
 
 function App() {
   return (
-    <div>
+    <div id="mainContainer">
       <p>Nadácia Good Boy</p>
       <img src={baron} alt="" id='baron' />
       <Form />

@@ -75,6 +75,7 @@ const Step2 = () => {
             </input>
             <button type="submit" onClick={handleStep2}>Pokracovat</button> {/*Checks form validity, proceeds to step3*/}
         </form>
+        <p>Späť</p>
         </>
     )
 }
