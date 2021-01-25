@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../redux/store'
+import axios from 'axios';
 
 const Step1 = () => {
     const dispatch = useDispatch();
     const [selectedShelter, setSelectedShelter] = useState ('Vyberte si zo zoznamu') //Selected shelter  - ID or empty
+
+    //Axios API call
+    useEffect (() => {
+        axios
+            .get('https://frontend-assignment-api.goodrequest.com/api/v1/shelters')
+            .then(response => {
+                dispatch({ type: 'SHELTERLOAD', payload: response.data });
+                dispatch({ type: 'ISLOADED' })
+            })
+    }, [])
 
     //Donation type
     const DonationType = () => {
