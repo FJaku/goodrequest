@@ -1,6 +1,9 @@
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Hind', sans-serif;
+  cursor: default;
+  font-size: 1.25vw;
+  background-color: rgb(236, 236, 236);
 }
 
 code {
@@ -19,9 +22,133 @@ input[type=number] {
 }
 
 #baron {
-  width: 20vw;
+  width: 22.5vw;
   position: absolute;
-  top: 10vw;
+  top: 10.5vw;
   right: 20vw;
+  box-shadow: 0vw 0vw 0.25vw;
 }
+
+#mainContainer {
+  margin: 1.5vw;
+}
+
+i {
+  padding: 1.5vw;
+  border-radius: 50%;
+  background-color: rgba(0,0,0, 0.25);
+  font-size: 1.5vw !important;
+  transition: font-size 1s;
+}
+
+#donationChoiceText {
+  width: 33vw;
+  font-size: 3vw;
+  margin-left: 15vw;
+  margin-top: 7.5vw;
+  line-height: 100%;
+}
+
+#donationType {
+  margin-left: 15vw;
+  color: grey;
+  display: block;
+}
+
+#donationType div {
+  cursor: pointer;
+  height: 11vw;
+  padding: 1vw;
+  width: 16.5vw;
+  float: left;
+  box-sizing: border-box;
+  transition: color 0.25s;
+  border: solid 0.1vw #BB6B3D;
+}
+
+#wholeOrganization {
+  border-top-left-radius: 1.5vw;
+  border-bottom-left-radius: 1.5vw;
+}
+
+#selectedShelter {
+  border-top-right-radius: 1.5vw;
+  border-bottom-right-radius: 1.5vw;
+}
+
+.notSelected:hover {
+  color: black;
+}
+
+.selected {
+  background-color:#BB6B3D;
+  color: white;
+  box-shadow: grey 0vw 0.5vw 2vw;
+}
+
+#shelterChoiceContainer {
+  display: block;  
+  clear: both;
+  overflow: hidden;
+  margin-left: 15vw;
+}
+
+#displaySelectedShelter {
+  margin-top: 2vw;
+  width: 33vw;
+  height: 4.25vw;
+  padding: 1.25vw;
+  background-color: rgb(219, 219, 219);
+  box-sizing: border-box;
+  border-radius: 0.5vw;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#displaySelectedShelter:hover + ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+#shelterList:hover {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+#shelterList {
+  padding: 1.25vw;
+  padding-top: 0vw;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  width: 33vw;
+  background-color: rgb(219, 219, 219);
+  box-sizing: border-box;
+  border-radius: 0.5vw;
+  height: 10vw;
+  overflow-y: hidden;
+  margin-top: -1.75vw;
+  transition: 0.25s;
+}
+
+.shelterListItem {
+  color: grey;
+  list-style-type: none;
+  padding-left: 0.2vw;
+  width: 20vw;
+}
+
+.shelterListItem span {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.shelterListItem span:hover {
+  color: black;
+  padding-left: 0.5vw;
+}
+
 
