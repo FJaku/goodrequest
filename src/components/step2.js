@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
 const Step2 = () => {
@@ -19,8 +18,14 @@ const Step2 = () => {
     const handleCountryChange = (event) => {
         dispatch({ type: 'LISTENCOUNTRY', payload: event.target.value})
     }
+
+    const handleStep2 = (event) => {
+        event.preventDefault()
+
+    }
     return (
         <>
+        <form>
             {/*First Name*/}
             <input
                 pattern='.{0}|.{2,20}' //Length - empty or 2-20 char long
@@ -68,6 +73,8 @@ const Step2 = () => {
                 required
             >
             </input>
+            <button type="submit" onClick={handleStep2}>Pokracovat</button> {/*Checks form validity, proceeds to step3*/}
+        </form>
         </>
     )
 }
