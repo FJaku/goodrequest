@@ -29,14 +29,19 @@ const Step2 = () => {
 
     //Prefix switch
     const chooseSVK = () => {
-        setPrefix({prefix: '+421', img:svk})
+        setPrefix({ prefix: '+421', img:svk })
         console.log(prefix.prefix)
-        dispatch({ type: 'LISTENCOUNTRY', payload: '+421'})
+        dispatch({ type: 'LISTENCOUNTRY', payload: '+421' })
     }
 
     const chooseCZ = () => {
-        setPrefix({prefix: '+420', img:cz})
-        dispatch({ type: 'LISTENCOUNTRY', payload: '+420'})
+        setPrefix({ prefix: '+420', img:cz })
+        dispatch({ type: 'LISTENCOUNTRY', payload: '+420' })
+    }
+
+    const transitionToStep1 = () => {
+        dispatch({ type: 'HIDESTEP2' })
+        dispatch({ type: 'SHOWSTEP1' })
     }
 
     //Validity check + transition
@@ -113,7 +118,7 @@ const Step2 = () => {
                     type="text"
                     value={useSelector(state => state.firstNameReducer)}
                     onChange={handleFirstNameChange}
-                    placeholder='Zadajte vaše meno'
+                    placeholder='Zadajte vaše meno (nepovinné)'
                     id="fistNameInput"                   
                 >
                 </input>
@@ -165,13 +170,16 @@ const Step2 = () => {
                 </input>
             </div>            
         </form>
-        <p>Späť</p>
+        <p
+            className="backButton"
+            id="backStep1Button"
+            onClick={transitionToStep1}
+        >Späť</p>
         <p 
             className="nextButton" 
             id="step2Button" 
             onClick={secondTransition}
-            >Pokračovať
-        </p>
+        >Pokračovať</p>
         </div>
     )
 }

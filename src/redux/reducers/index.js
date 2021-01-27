@@ -1,4 +1,4 @@
-import { isLoadedReducer, shelterChoiceReducer, countryReducer, shelterLoadReducer, firstNameReducer, lastNameReducer, emailReducer, numberReducer, donationReducer } from './formReducer'
+import { dogReducer, step1Reducer, step2Reducer, step3Reducer, isLoadedReducer, shelterChoiceReducer, countryReducer, shelterLoadReducer, firstNameReducer, lastNameReducer, emailReducer, numberReducer, donationReducer } from './formReducer'
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -10,7 +10,11 @@ const rootReducer = combineReducers({
     shelterLoadReducer,
     countryReducer,
     shelterChoiceReducer,
-    isLoadedReducer
+    isLoadedReducer, 
+    step1Reducer, 
+    step2Reducer, 
+    step3Reducer,
+    dogReducer
 })
 
 export default rootReducer;

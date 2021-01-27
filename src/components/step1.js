@@ -24,7 +24,7 @@ const Step1 = () => {
     const DonationType = () => {
         return (
             <>
-            <p id="donationChoiceText">Vyberte si možnosť, ako chcete pomôcť </p>
+            <p className="stepMainText">Vyberte si možnosť, ako chcete pomôcť </p>
             <div id="donationType">
                 <div id='wholeOrganization' className={selected[0]} onClick={() => {
                             setSelected(['selected', 'notSelected']) //Swtich donation type
