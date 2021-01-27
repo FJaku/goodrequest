@@ -12,6 +12,7 @@ const Step3 = () => {
             event.preventDefault()
             dispatch({ type: 'BARON3'})
             console.log('success')
+            //finalFormSubmit()
         } else {
             let x = document.getElementById('agree')
             x.classList.add('highlight')
