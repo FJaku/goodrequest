@@ -12,7 +12,27 @@ const Step3 = () => {
             event.preventDefault()
             dispatch({ type: 'BARON3'})
             console.log('success')
-            //finalFormSubmit()
+            //POST
+            /* const finalFormSubmit = {
+                
+                firstName: store.getState().firstNameReducer,
+                lastName: store.getState().lastNameReducer,
+                email: store.getState().emailReducer,
+                phone: store.getState().countryReducer.concat(store.getState().numberReducer) //Concat number with prefix
+                value: store.getState().donationReducer,
+                shelterID: store.getState().shelterChoiceReducer.id
+            }
+            axios
+                .post('https://frontend-assignment-api.goodrequest.com/api/v1/shelters/contribute', finalFormSubmit)
+                .catch(error => {
+                    console.log({
+                        error,
+                        'error status': error.response.status, 
+                        'error response': error.response.data
+                    })
+                    alert('Donation failed')
+                }) */   
+           
         } else {
             let x = document.getElementById('agree')
             x.classList.add('highlight')
@@ -22,26 +42,7 @@ const Step3 = () => {
         }
         
 
-    //POST
-    /* const finalFormSubmit = {
-        
-        firstName: store.getState().firstNameReducer,
-        lastName: store.getState().lastNameReducer,
-        email: store.getState().emailReducer,
-        phone: store.getState().countryReducer.concat(store.getState().numberReducer) //Concat number with prefix
-        value: store.getState().donationReducer,
-        shelterID: store.getState().shelterChoiceReducer.id
-    }
-    axios
-        .post('https://frontend-assignment-api.goodrequest.com/api/v1/shelters/contribute', finalFormSubmit)
-        .catch(error => {
-            console.log({
-                error,
-                'error status': error.response.status, 
-                'error response': error.response.data
-            })
-            alert('Donation failed')
-        }) */   
+    
     }
 
     const donationSelected =  useSelector(state => state.shelterChoiceReducer)
