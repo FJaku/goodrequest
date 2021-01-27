@@ -1,13 +1,25 @@
 import axios from 'axios';
 import store from '../redux/store'
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Step3 = () => {
+    const dispatch = useDispatch();
+
     //Submit form
     const submitForm = (event) => {
-        event.preventDefault()
-        console.log('success')
+        if (document.getElementById('checkbox').checked) {
+            event.preventDefault()
+            dispatch({ type: 'BARON3'})
+            console.log('success')
+        } else {
+            let x = document.getElementById('agree')
+            x.classList.add('highlight')
+            setTimeout(() => 
+                x.classList.remove('highlight')
+            ,500)
+        }
+        
 
     //POST
     /* const finalFormSubmit = {
@@ -35,54 +47,71 @@ const Step3 = () => {
     const donationAmount = useSelector(state => state.donationReducer)
     const firstLastName = useSelector(state => state.firstNameReducer.concat(' ', state.lastNameReducer))
     const email = useSelector(state => state.emailReducer)
-    const phone = useSelector(state => state.countryReducer.concat(state.numberReducer))
+    const phone = useSelector(state => state.countryReducer.concat(' ', state.numberReducer))
+
+    const transitionToStep2 = () => {
+        dispatch({ type: 'HIDESTEP3' })
+        dispatch({ type: 'SHOWSTEP2' })
+        dispatch({ type: 'BARON1'})
+    }
 
     //Form of help - Org or shelter
     const FormOfHelp = () => {
         if (donationSelected === ''){
             return (
                 <>
-                    <p>Príspevok celej nadácii</p>
+                    <p className="inputCheckValue">Príspevok celej nadácii</p>
                 </>
             )
         } else {
             return (
                 <>
-                    <p>Príspevok pre {donationSelected.name}</p>
+                    <p className="inputCheckValue">Chcem prispieť konkrétnemu útulku   </p>
+                    <p className="inputCheckHeader">Najviac mi záleží na útulku</p>
+                    <p className="inputCheckValue">{donationSelected.name}</p>
                 </>
             )
         }
     }
 
+    const step3 = useSelector(state => state.step3Reducer)
+
     return (
-        <>
-            <p>Skontrolujte si zadané údaje</p>
-            <p>Akou formou chcem pomôcť?</p>
+        <div id="step3" className={step3}>
+            <p className="stepMainText">Skontrolujte si zadané údaje</p>
+            <p className="inputCheckHeader">Akou formou chcem pomôcť?</p>
             <FormOfHelp key={donationSelected}/>
-            <p>Suma, ktorou chcem prispieť: {donationAmount}</p>
-            <p>Meno a prezvisko</p>
-            <p>{firstLastName}</p>
-            <p>Emailová adresa</p>
-            <p>{email}</p>
-            <p>Telefónne číslo</p>
-            <p>{phone}</p>
+            <p className="inputCheckHeader">Suma, ktorou chcem prispieť</p>
+            <p className="inputCheckValue">{donationAmount}€</p>
+            <p className="inputCheckHeader">Meno a prezvisko</p>
+            <p className="inputCheckValue">{firstLastName}</p>
+            <p className="inputCheckHeader">Emailová adresa</p>
+            <p className="inputCheckValue">{email}</p>
+            <p className="inputCheckHeader">Telefónne číslo</p>
+            <p className="inputCheckValue">{phone}</p>
             <form onSubmit={submitForm}>
                 {/*Terms and conditions*/}
                 <input 
                     id="checkbox"
                     type="checkbox" 
-                    required 
+                    className='css-checkbox'
                 > 
                 </input>
-                <label>
-                    Súhlasím so spracovaním mojich osobných údajov
+                <label 
+                    className="css-label" 
+                    for="checkbox"
+                >
                 </label>
-                <br></br>
+                <span id="agree">Súhlasím so spracovaním mojich osobných údajov</span>
                 {/*Submit button*/}
-                <button type="submit" onClick={submitForm}>Send</button>
+                <p className="nextButton" id="sendFormButton" onClick={submitForm}>Odoslať formulár</p>
             </form>
-            <p>Späť</p>
-        </>
+            <p
+                className="backButton"
+                id="backStep2Button"
+                onClick={transitionToStep2}
+            >Späť</p>
+        </div>
     )
 }
 
