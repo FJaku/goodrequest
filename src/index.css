@@ -243,6 +243,22 @@ i {
   color: white;
 }
 
+.backButton {
+  position: absolute;
+  margin-left: 15vw;
+  margin-top: 5vw;
+  background-color: #BB6B3D;
+  border-radius: 3vw;
+  padding: 1.25vw;
+  color: rgba(216,216,216);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.backButton:hover {
+  color: white
+}
+
 .showStep1 {
   visibility: visible;
   opacity: 1;
@@ -366,6 +382,10 @@ i {
   transition: 0.25s;
 }
 
+#prefixChoiceContainer {
+  width: 6.5vw;
+}
+
 #prefixChoiceContainer span {
   font-size: 1.2vw;
   display: inline;
@@ -375,8 +395,71 @@ i {
 
 #prefixChoiceContainer img {
   width: 1.2vw;
+  display: inline;
 }
 
 #step2Button {
-  margin-top: 0vw;
+  margin-top: 5vw;
+}
+
+.inputCheckHeader{
+  font-size: 1vw;
+  margin-left: 15vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.inputCheckValue {
+  margin-left: 15vw;
+  margin-top: 0;
+}
+
+input[type=checkbox].css-checkbox {
+  position:absolute; 
+  z-index:-1000; 
+  left:-1000px; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  padding:0; 
+  border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+  margin-left: 15vw;
+  padding-left: 2vw;
+  width: 30px;
+  height: 30px;
+  display:inline-block;
+  line-height:1vw;
+  background-repeat:no-repeat;
+  background-position: 0 0;
+  font-size: 1.25vw;
+  vertical-align:middle;
+  cursor:pointer;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -30px;
+}
+
+label.css-label {
+  background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_f60067e68146be412873f96f1d2458cd.png);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+form span {
+  top: 1vw;
+  transition: 0.5s;
+}
+
+#sendFormButton {
+  margin-left: 35.5vw;
+  margin-top: 5vw;
+  width: 9.5vw;
 }
