@@ -40,7 +40,7 @@ i {
   transition: font-size 1s;
 }
 
-#donationChoiceText {
+.stepMainText {
   width: 33vw;
   font-size: 3vw;
   margin-left: 15vw;
@@ -101,7 +101,7 @@ i {
   box-sizing: border-box;
   border-radius: 0.5vw;
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.5s;
   border: solid 0.1vw rgb(216,216,216);
 }
 
@@ -129,6 +129,8 @@ i {
   width: 33vw;
   box-sizing: border-box;
   border-radius: 0.5vw;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   height: 0vw;
   overflow-y: hidden;
   margin-top: -1.75vw;
@@ -181,6 +183,10 @@ i {
   margin-bottom: 0;
 }
 
+#donationText {
+  transition: 0.5s;
+}
+
 .selectedAmount {
   background-color: #BB6B3D !important;
   color: white !important;
@@ -215,6 +221,12 @@ i {
   outline: 0;
 }
 
+.highlight {
+  color: red !important;
+  padding-left: 3vw !important;
+  transition: 0.5s;
+}
+
 .nextButton {
   position: absolute;
   margin-left: 39.5vw;
@@ -222,39 +234,149 @@ i {
   background-color: #BB6B3D;
   border-radius: 3vw;
   padding: 1.25vw;
-  color: white;
+  color: rgba(216,216,216);
+  cursor: pointer;
+  transition: 0.5s;
 }
 
-input:invalid {
-  background-color: red;
+.nextButton:hover {
+  color: white;
 }
 
 .showStep1 {
   visibility: visible;
   opacity: 1;
+  transition: 0.25s;
 }
 
 .hideStep1 {
   visibility: hidden;
   opacity: 0;
+  display: none;
 }
 
 .showStep2 {
   visibility: visible;
   opacity: 1;
+  transition: 0.25s;
 }
 
 .hideStep2 {
   visibility: hidden;
   opacity: 0;
+  display: none;
 }
 .showStep3 {
   position: absolute;
   visibility: visible;
   opacity: 1;
+  transition: 0.25s;
 }
 
 .hideStep3 {
   visibility: hidden;
   opacity: 0;
+  display: none;
+}
+
+.step2Input {
+  box-sizing: border-box;
+  border: solid 0.1vw rgb(216,216,216);
+  height: 4.65vw;
+  color: grey;
+  border-radius: 0.5vw;
+  margin-top: 1.25vw;
+  margin-left: 15vw;
+  transition: 0.25s;
+  width: 33vw;
+}
+
+.step2Input p {
+  color: black;
+  margin: 0;
+  padding-left: 1.25vw;
+  padding-top: 0.5vw;
+  font-size: 1vw;
+  transition: 0.5s;
+}
+
+.step2Input input {
+  border: none;
+  font-size: 1.2vw;
+  padding-left: 1.25vw;
+  cursor: pointer;
+  width: 20vw;
+}
+
+.step2Input input:focus {
+  color: black;
+  border: none;
+  outline: 0;
+}
+
+#prefixChoiceContainer {
+  width: 5.5vw;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-top: -0.25vw;
+}
+
+#prefixList {
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  width: 6.25vw;
+  height: 0;
+  position: absolute;
+  list-style: none;
+  margin-top: -0.25vw;
+  margin-left: -0.1vw;
+  padding-left: 1.2vw;
+  transition: 0.25s;
+  background-color: white;
+  font-size: 1.2vw;
+  line-height: 100%;
+  border: solid 0.1vw rgb(216,216,216);
+  border-bottom-right-radius: 0.5vw;
+  border-bottom-left-radius: 0.5vw;
+  border-top: none;
+}
+
+#prefixList:hover {
+  opacity: 1;
+  visibility: visible;
+  height: 4vw;
+  transition: 0.25s;
+}
+
+.prefixListItem {
+  transition: 0.25s;
+  padding-top: 0.25vw;
+}
+
+.prefixListItem:hover {
+  color: black;
+  transition: 0.25s;
+}
+
+#prefixChoiceContainer:hover #prefixList {
+  opacity: 1;
+  visibility: visible;
+  height: 4vw;
+  transition: 0.25s;
+}
+
+#prefixChoiceContainer span {
+  font-size: 1.2vw;
+  display: inline;
+  padding-left: 0.5vw;
+  color: grey ;
+}
+
+#prefixChoiceContainer img {
+  width: 1.2vw;
+}
+
+#step2Button {
+  margin-top: 0vw;
 }
